@@ -1,0 +1,40 @@
+#include <stdio.h>
+struct Student {
+    int id;
+    int age;
+    char name[50];
+};
+
+int main() {
+    struct Student s[100], temp;
+    int n, i, j, choice;
+
+    printf("Enter number of students: ");
+    scanf("%d", &n);
+
+    for (i = 0; i < n; i++) {
+        printf("\nEnter ID, Age, Name: ");
+        scanf("%d %d %s", &s[i].id, &s[i].age, s[i].name);
+    }
+
+    printf("\nSort by: 1) ID  2) Age: ");
+    scanf("%d", &choice);
+
+    for (i = 0; i < n - 1; i++) {
+        for (j = i + 1; j < n; j++) {
+            if ((choice == 1 && s[i].id > s[j].id) ||
+                (choice == 2 && s[i].age > s[j].age)) {
+                temp = s[i];
+                s[i] = s[j];
+                s[j] = temp;
+            }
+        }
+    }
+
+    printf("\nSorted Records:\n");
+    for (i = 0; i < n; i++) {
+        printf("%d  %d  %s\n", s[i].id, s[i].age, s[i].name);
+    }
+
+    return 0;
+}
