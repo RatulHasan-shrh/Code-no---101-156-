@@ -1,0 +1,26 @@
+#include <stdio.h>
+
+struct Student {
+    int id;
+    char name[50];
+};
+
+
+int main() {
+    struct Student s1 = {101, "Ratul"}, s2;
+    FILE *fp;
+
+               fp = fopen("student.dat", "wb");
+               fwrite(&s1, sizeof(s1), 1, fp);
+               fclose(fp);
+
+           fp = fopen("student.dat", "rb");
+           fread(&s2, sizeof(s2), 1, fp);
+           fclose(fp);
+  
+
+    printf("ID: %d  Name: %s", s2.id, s2.name);
+  
+
+    return 0;
+}
